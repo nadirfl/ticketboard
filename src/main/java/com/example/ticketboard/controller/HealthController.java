@@ -1,6 +1,6 @@
 package com.example.ticketboard.controller;
 
-import com.example.ticketboard.data.HealthCheck;
+import com.example.ticketboard.dto.HealthCheck;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
