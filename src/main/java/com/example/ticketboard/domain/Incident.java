@@ -2,32 +2,49 @@ package com.example.ticketboard.domain;
 
 import jakarta.persistence.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Entity
-@Table(name = "incident")
 public class Incident {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 255)
     private String title;
+
+    @Column(length = 2000)
     private String description;
-    @Enumerated(EnumType.STRING)
-    private Status status;
-    @Enumerated(EnumType.STRING)
-    private Severity severity;
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
 
-    protected Incident() {}
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private IncidentStatus incidentStatus;
 
-    public Incident(String title, String description, Status status, Severity severity, LocalDateTime creationDate) {
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 50)
+    private IncidentSeverity incidentSeverity;
+
+    @Column(nullable = false)
+    private Instant createdAt;
+
+    @Column(length = 4000)
+    private String resolution;
+
+    @PrePersist
+    void onCreate() {
+        createdAt = Instant.now();
+    }
+
+    public Incident() {}
+
+    public Incident(String title, String description, IncidentStatus incidentStatus, IncidentSeverity incidentSeverity, Instant createdAt, String resolution) {
         this.title = title;
         this.description = description;
-        this.status = status;
-        this.severity = severity;
-        this.creationDate = creationDate;
+        this.incidentStatus = incidentStatus;
+        this.incidentSeverity = incidentSeverity;
+        this.createdAt = createdAt;
+        this.resolution = resolution;
     }
 
     public Long getId() {
@@ -54,27 +71,35 @@ public class Incident {
         this.description = description;
     }
 
-    public Status getStatus() {
-        return status;
+    public IncidentStatus getStatus() {
+        return incidentStatus;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setStatus(IncidentStatus incidentStatus) {
+        this.incidentStatus = incidentStatus;
     }
 
-    public Severity getSeverity() {
-        return severity;
+    public IncidentSeverity getSeverity() {
+        return incidentSeverity;
     }
 
-    public void setSeverity(Severity severity) {
-        this.severity = severity;
+    public void setSeverity(IncidentSeverity incidentSeverity) {
+        this.incidentSeverity = incidentSeverity;
     }
 
-    public LocalDateTime getCreationDate() {
-        return creationDate;
+    public Instant getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreationDate(LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getResolution() {
+        return resolution;
+    }
+
+    public void setResolution(String resolution) {
+        this.resolution = resolution;
     }
 }

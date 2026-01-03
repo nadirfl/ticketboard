@@ -1,6 +1,6 @@
 package com.example.ticketboard.domain;
 
-public enum Status {
+public enum IncidentStatus {
     OPEN,
     IN_PROGRESS,
     CLOSED

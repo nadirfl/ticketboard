@@ -1,6 +1,6 @@
 package com.example.ticketboard.domain;
 
-public enum Severity {
+public enum IncidentSeverity {
     LOW,
     MEDIUM,
     HIGH,
