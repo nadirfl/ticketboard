@@ -1,38 +1,31 @@
-package com.example.ticketboard.domain;
+package com.example.ticketboard.dto;
 
-import jakarta.persistence.*;
+import com.example.ticketboard.domain.Incident;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 
-@Entity
-public class Comment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "incident_id", nullable = false)
+public class CommentResponse {
+
+    private Long id;
     private Incident incident;
-
-    @Column(nullable = false, length = 255)
     private String author;
-
-    @Column(nullable = false, length = 2000)
     private String message;
-
-    @Column(nullable = false)
     private Instant createdAt;
 
-    @PrePersist
-    void onCreate() { createdAt = Instant.now();}
-
-    public Comment() {}
-
-    public Comment(Incident incident, String author, String message, Instant createdAt) {
+    public CommentResponse(Long id, Incident incident, String author, String message, Instant createdAt) {
+        this.id = id;
         this.incident = incident;
         this.author = author;
         this.message = message;
         this.createdAt = createdAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Incident getIncident() {
@@ -65,13 +58,5 @@ public class Comment {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 }

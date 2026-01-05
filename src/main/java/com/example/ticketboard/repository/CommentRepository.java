@@ -4,9 +4,12 @@ import com.example.ticketboard.domain.Comment;
 import com.example.ticketboard.domain.Incident;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.Arrays;
 import java.util.List;
 
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByIncident(Incident incident);
+
+    List<Comment> findByIncidentID(Long incidentID);
 }
