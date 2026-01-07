@@ -11,5 +11,9 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByIncident(Incident incident);
 
-    List<Comment> findByIncidentID(Long incidentID);
+    List<Comment> findByIncidentId(Long incidentId);
+
+    List<Comment> findByIncidentIdOrderByCreatedAtDesc(Long incidentId);
+
+
 }

@@ -2,7 +2,9 @@ package com.example.ticketboard.mapper;
 
 import com.example.ticketboard.domain.Comment;
 import com.example.ticketboard.dto.CommentResponse;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CommentMapper {
 
     public CommentResponse toCommentResponseDto(Comment comment) {

@@ -48,7 +48,7 @@ public class IncidentController {
         return ResponseEntity.ok(incidentService.updateIncident(incidentID, updateRequest));
     }
 
-    @DeleteMapping("/{id}}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteIncident(@PathVariable Long incidentID) {
         incidentService.deleteIncident(incidentID);
         return ResponseEntity.noContent().build();
