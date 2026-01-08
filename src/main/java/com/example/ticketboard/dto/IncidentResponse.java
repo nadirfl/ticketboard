@@ -12,7 +12,13 @@ public class IncidentResponse extends IncidentDto {
     private String resolution;
     private Instant createdAt;
 
-    public IncidentResponse(String title, String description, IncidentStatus status, IncidentSeverity severity, Instant createdAt, String resolution) {}
+    public IncidentResponse(Long id, String title, String description, IncidentStatus status, IncidentSeverity severity, Instant createdAt, String resolution) {
+        super(id, title, description);
+        this.status = status;
+        this.severity = severity;
+        this.resolution = resolution;
+        this.createdAt = createdAt;
+    }
 
     public Long getId() {
         return id;

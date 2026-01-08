@@ -25,6 +25,7 @@ public class IncidentController {
 
     @GetMapping
     public ResponseEntity<List<IncidentResponse>> getIncidents() {
+        System.out.println("getIncidents");
         return ResponseEntity.ok(incidentService.getAllIncidents());
     }
 

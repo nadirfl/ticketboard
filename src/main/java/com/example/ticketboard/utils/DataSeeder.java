@@ -6,7 +6,6 @@ import com.example.ticketboard.domain.IncidentSeverity;
 import com.example.ticketboard.domain.IncidentStatus;
 import com.example.ticketboard.repository.CommentRepository;
 import com.example.ticketboard.repository.IncidentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -19,7 +18,7 @@ public class DataSeeder implements CommandLineRunner {
     IncidentRepository incidentRepository;
     CommentRepository commentRepository;
 
-    @Value("${app.seed.enabled:false}")
+    @Value("${app.seed.enabled}")
     private boolean seedEnabled;
 
     public DataSeeder(IncidentRepository incidentRepository, CommentRepository commentRepository) {
@@ -29,6 +28,7 @@ public class DataSeeder implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("Data Seeder enabled: " + seedEnabled);
         if (!seedEnabled) return;
 
         if (incidentRepository.count() > 0) return;
@@ -38,5 +38,7 @@ public class DataSeeder implements CommandLineRunner {
 
         Comment comment = new Comment(incident, "Test", "Test", Instant.now());
         commentRepository.save(comment);
+
+        System.out.println("Mock Data created");
     }
 }

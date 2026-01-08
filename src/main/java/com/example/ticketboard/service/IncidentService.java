@@ -30,6 +30,7 @@ public class IncidentService implements IIncidentService {
     @Override
     @Transactional(readOnly = true)
     public List<IncidentResponse> getAllIncidents() {
+        System.out.println("Incident Size: " + incidentRepository.count());
         return incidentRepository.findAll()
                 .stream()
                 .map(incidentMapper::toIncidentResponseDto)

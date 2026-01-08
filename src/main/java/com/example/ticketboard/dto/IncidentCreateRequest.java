@@ -12,6 +12,12 @@ public class IncidentCreateRequest extends IncidentDto {
      @Size(max = 4000)
     private String resolution;
 
+     public IncidentCreateRequest(Long id, String title, String author, IncidentSeverity severity, String resolution) {
+         super(id, title, author);
+         this.incidentSeverity = severity;
+         this.resolution = resolution;
+     }
+
     public @NotNull IncidentSeverity getSeverity() {
         return incidentSeverity;
     }

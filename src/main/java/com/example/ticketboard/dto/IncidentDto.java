@@ -6,11 +6,20 @@ import jakarta.validation.constraints.Size;
 public class IncidentDto {
 
     @NotBlank
+    private Long id;
+
+    @NotBlank
     @Size(max = 255)
     private String title;
 
     @Size(max = 2000)
     private String description;
+
+    public IncidentDto(Long id, String title, String description) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+    }
 
     public @NotBlank @Size(max = 255) String getTitle() {
         return title;
@@ -26,5 +35,13 @@ public class IncidentDto {
 
     public void setDescription(@Size(max = 2000) String description) {
         this.description = description;
+    }
+
+    public @NotBlank Long getId() {
+        return id;
+    }
+
+    public void setId(@NotBlank Long id) {
+        this.id = id;
     }
 }

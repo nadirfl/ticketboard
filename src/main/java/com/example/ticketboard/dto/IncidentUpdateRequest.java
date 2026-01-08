@@ -16,6 +16,13 @@ public class IncidentUpdateRequest extends IncidentDto {
     @Size(max = 4000)
     private String resolution;
 
+    public IncidentUpdateRequest(Long id, String title, String description, IncidentStatus incidentStatus, IncidentSeverity incidentSeverity, String resolution) {
+        super(id, title, description);
+        this.status = incidentStatus;
+        this.severity = incidentSeverity;
+        this.resolution = resolution;
+    }
+
     public @NotNull IncidentStatus getStatus() {
         return status;
     }
